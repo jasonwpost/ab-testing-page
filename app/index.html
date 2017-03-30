@@ -2,7 +2,7 @@
 <!--[if lt IE 7]>      <html lang="en" ng-app="myApp" class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html lang="en" ng-app="myApp" class="no-js lt-ie9 lt-ie8"> <![endif]-->
 <!--[if IE 8]>         <html lang="en" ng-app="myApp" class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]><!--> <html lang="en" ng-app="abTestingMenu"> <!--<![endif]-->
+<!--[if gt IE 8]><!--> <html lang="en" ng-app="abTestingApp"> <!--<![endif]-->
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -13,9 +13,9 @@
   <link rel="stylesheet" href="/app.css">
 
   <script src="bower_components/angular/angular.js"></script>
-  <script src="create-and-edit-form/create-and-edit-form.module.js"></script>
-  <script src="create-and-edit-form/create-and-edit-form.component.js"></script>
-  <script src="app.module.js"></script>
+  <script src="app.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 </head>
 <body>
   <!--[if lt IE 7]>
@@ -36,7 +36,49 @@
   <div class="container">
     <div class="row">
       <div class="col-lg-12 col-sm-12">
-        <create-and-edit-form></create-and-edit-form>
+        <div ng-controller="FormAndDisplayController">
+
+          <h3>Tasks</h3>
+          <br>
+          <ul>
+            <li ng-repeat="(key, value) in tasks; " class="list-group-item">
+                {{$index+1}}. {{key}} <span style="float:right;cursor: pointer;" ng-click="edit(key)">Edit</span>
+            </li>
+          </ul>
+          <br />
+          <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#createAndEdit" aria-expanded="false" aria-controls="createAndEdit">Add</button>
+
+          <div class="collapse" id="createAndEdit">
+          <hr>
+          <h3>Create / Edit</h3>
+          <form class="form-group" name="addTaskForm">
+             <div class="">
+
+          		<label>Name: </label><input type="text" class="form-control" ng-model="task.name" autofocus required />
+              <br>
+              <label>Sample: </label><input type="number" class="form-control" ng-model="task.sample" autofocus required min="0" max="1" step="0.01"/>
+              <br>
+              <label>Platform:</label>
+              <fieldset>
+                <label class="platform"><input class="innerPlatform" type="checkbox" ng-model="task.web" value="web" ng-required="!(task.web || task.mobile)">web</label>
+                <label class="platform"><input class="innerPlatform" type="checkbox" ng-model="task.mobile" value="mobile" ng-required="!(task.web || task.mobile)">mobile</label>
+              </fieldset>
+
+            			<button type="submit" class="btn btn-primary" ng-disabled="addTaskForm.$invalid" ng-click="onSubmit()">
+            					<i class="fa fa-plus"></i>&nbsp;Save
+            			</button>
+
+
+             </div>
+          </form>
+          <!-- testing
+          <pre>task = {{task | json}}</pre>
+          <pre>tasks = {{tasks | json}}</pre>
+        -->
+        </div>
+
+        </div>
+
       </div>
     </div>
   </div>
