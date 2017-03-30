@@ -1,3 +1,3 @@
 'use strict'
 
-angular.module('abTestingMenu', ['testItem']);
+angular.module('abTestingMenu', ['createAndEditForm']);

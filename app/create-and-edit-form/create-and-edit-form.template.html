@@ -1,0 +1,41 @@
+
+
+<div ng-controller="createAndEditFormController">
+
+  <h3>Tasks</h3>
+  <br>
+  <ul>
+    <li ng-repeat="(key, value) in tasks; " class="list-group-item">
+        {{$index+1}}. {{key}} <span style="float:right;cursor: pointer;" ng-click="edit(key)">Edit</span>
+    </li>
+  </ul>
+
+
+  <hr>
+
+
+  <h3>Create / Edit</h3>
+  <form class="form-group" name="addTaskForm">
+     <div class="">
+
+  		<label>Name: </label><input type="text" class="form-control" ng-model="task.name" autofocus required />
+      <br><br>
+      <label>Sample: </label><input type="number" class="form-control" ng-model="task.sample" autofocus required min="0" max="1" step="0.01"/>
+      <br><br>
+      <label>Platform:</label>
+      <fieldset>
+        <label><input type="checkbox" ng-model="task.web" value="web">web</label>
+        <label><input type="checkbox" ng-model="task.mobile" value="mobile">mobile</label>
+      </fieldset>
+  		   <div class="input-group-btn">
+    			<button type="submit" class="btn btn-primary" ng-disabled="addTaskForm.$invalid" ng-click="onSubmit()">
+    					<i class="fa fa-plus"></i>&nbsp;Save
+    			</button>
+  		   </div>
+
+     </div>
+  </form>
+  <pre>task = {{task | json}}</pre>
+  <pre>tasks = {{tasks | json}}</pre>
+
+</div>
