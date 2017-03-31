@@ -1,6 +1,4 @@
-'use strict'
-
-var abTestingApp = angular.module('abTestingApp', []);
+let abTestingApp = angular.module('abTestingApp', []);
 
 abTestingApp.controller('FormAndDisplayController', function FormAndDisplayController($scope){
   $scope.task = {};
@@ -8,11 +6,13 @@ abTestingApp.controller('FormAndDisplayController', function FormAndDisplayContr
   $scope.tasks = {};
 
   $scope.onSubmit = function () {
-    let taskName = $scope.task.name.toUpperCase().replace(/ /g,"_");
-    let sample = $scope.task.sample;
+    // change taskName to uppercase and replace all ' ' with '_'
+    const taskName = $scope.task.name.toUpperCase().replace(/ /g,"_");
+
+    const sample = $scope.task.sample;
     let platforms = [];
-    let isWeb = $scope.task.web;
-    let isMobile = $scope.task.mobile;
+    const isWeb = $scope.task.web;
+    const isMobile = $scope.task.mobile;
 
     if (isWeb){
       platforms.push("web");
@@ -36,8 +36,8 @@ abTestingApp.controller('FormAndDisplayController', function FormAndDisplayContr
     }
     $scope.task.name = key;
     $scope.task.sample = $scope.tasks[key].sample;
-    let isWeb = $scope.tasks[key].platforms.indexOf("web") >= 0;
-    let isMobile = $scope.tasks[key].platforms.indexOf("ios") >= 0 ||
+    const isWeb = $scope.tasks[key].platforms.indexOf("web") >= 0;
+    const isMobile = $scope.tasks[key].platforms.indexOf("ios") >= 0 ||
         $scope.tasks[key].platforms.indexOf("android") >= 0;
 
     if (isWeb){
