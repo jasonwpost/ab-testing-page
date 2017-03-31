@@ -42,7 +42,7 @@
           <br>
           <ul>
             <li ng-repeat="(key, value) in tasks; " class="list-group-item">
-                {{$index+1}}. {{key}} <span style="float:right;cursor: pointer;" ng-click="edit(key)">Edit</span>
+                {{$index+1}}. {{key}} <span class="edit" ng-click="edit(key)">Edit</span>
             </li>
           </ul>
           <br />
